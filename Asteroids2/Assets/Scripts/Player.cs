@@ -138,7 +138,8 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         //Si colisionamos con un enemigo
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" ||
+            other.gameObject.tag == "SmallEnemy")
         {
             //Destruimos al enemigo
             Destroy(other.gameObject);

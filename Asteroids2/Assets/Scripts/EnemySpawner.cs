@@ -10,11 +10,17 @@ public class EnemySpawner : MonoBehaviour
 
     public float spawnRateIncrement = 1f;
 
-    public float xLimit,yLimit;
+    public float xBorderLimit1, yBorderLimit1; //Limites para asteroides que spawnean arriba
+    public float xBorderLimit2, yBorderLimit2; //Limites para asteroides que spawnean a la derecha
+    public float xBorderLimit3, yBorderLimit3; //Limites para asteroides que spawnean abajo
+    public float xBorderLimit4, yBorderLimit4; //Limites para asteroides que spawnean a la izquierda
     public float maxLifeTime = 4f;
     
     private float spawnNext = 0;
-    
+    private int _spawnSelect; // Variable para seleccionar aleatoriamente el lado donde spawnea el meteorito
+    private float angle; //Variable para guardar el angulo aleatorio del meteorito.
+    private float PI = Mathf.PI; //Los radianes no se trabajan solos :)
+
     // Update is called once per frame
     void Update()
     {
@@ -23,18 +29,51 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnNext = Time.time + 60 / spawnRatePerMinute;
             spawnRatePerMinute += spawnRateIncrement;
-            /*SpawnPosition -> podemos ponerle un objeto en especifico o darle un lugar (miramos en unity a ver en q coords sta 
-                el meteorito fuera de escena
-                Vector2 spawnPosition = new Vector2(0, 8); Esto nos spawnearia el meteorito siempre en el 0,8
-                Para hacerlo random*/
-            
-            float rand = Random.Range(-xLimit, xLimit);
-            Vector2 spawnPosition = new Vector2(rand, yLimit);
+
+            /*Seleccionamos aleatoriamente uno de los 4 lados de la pantalla, siendo la correspondencia exacta:
+              1 -> Arriba
+              2 -> Derecha
+              3 -> Abajo
+              4 -> Izquierda*/
+            _spawnSelect = Random.Range(1, 5);
             //Creamos el meteorito         
-            GameObject meteor = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
+            GameObject meteor = spawn(_spawnSelect);
             
             //Destruimos el meteorito desps de un tiempo para no llenar la escena
             Destroy(meteor, maxLifeTime);
         }
+    }
+
+    private GameObject spawn(int i)
+    {
+        float rand; //Variable para almacenar la psicion aleatoria de nuestro meteorito, dentro de se lado correspondiente
+        Vector2 spawnPosition = new Vector2(0, 0); //se inicializa spawnPosition por defecto a (0,0), luego si algo spawnea ahí, mala cosa
+
+        if (i == 1)
+        {
+            rand = Random.Range(-xBorderLimit1, xBorderLimit1);
+            spawnPosition.Set(rand, yBorderLimit1);
+            angle = Random.Range(-PI / 4, PI / 4);
+        }
+        else if (i == 2)
+        {
+            rand = Random.Range(-yBorderLimit2, yBorderLimit2);
+            spawnPosition.Set(xBorderLimit2, rand);
+            angle = Random.Range(-3 * PI / 4, -PI / 4);
+        }
+        else if (i == 3)
+        {
+            rand = Random.Range(-xBorderLimit3, xBorderLimit3);
+            spawnPosition.Set(rand, yBorderLimit3);
+            angle = Random.Range(3 * PI / 4, 5 * PI / 4);
+        }
+        else if (i == 4)
+        {
+            rand = Random.Range(-yBorderLimit4, yBorderLimit4);
+            spawnPosition.Set(xBorderLimit4, rand);
+            angle = Random.Range(PI / 4, 3 * PI / 4);
+        }
+
+        return Instantiate(asteroidPrefab, spawnPosition, new Quaternion(0, 0, Mathf.Sin(angle / 2), Mathf.Cos(angle / 2)));
     }
 }

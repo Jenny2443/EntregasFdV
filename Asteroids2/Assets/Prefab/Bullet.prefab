@@ -100,9 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   maxLife: 3
+  miniMeteoPrefab: {fileID: 3595727816789869435, guid: a5a42f59587948546986e91e1995f833, type: 3}
   targetVector: {x: 1, y: 0, z: 0}
-  miniAsteroidPrefab: {fileID: 1395012235438780059, guid: f5405539928b74265a42ba1bc944436b, type: 3}
-  asteroidSize: 2
 --- !u!65 &5849982523302079892
 BoxCollider:
   m_ObjectHideFlags: 0
