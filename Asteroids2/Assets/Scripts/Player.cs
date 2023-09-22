@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -26,6 +28,11 @@ public class Player : MonoBehaviour
     //Pantalla Pausa
     public GameObject pauseMenu;
     Boolean enPausa = false;
+    
+    //Pantalla final
+    public GameObject gameOverMenu;
+    public Text scoreTextGameOver;
+    private Boolean enGameOver = false;
     
     //Start is called before the first frame update
     void Start()
@@ -110,6 +117,7 @@ public class Player : MonoBehaviour
         {
             Application.Quit();
         }
+        
     }
 
     private void PauseGame()
@@ -132,9 +140,43 @@ public class Player : MonoBehaviour
         //Si colisionamos con un enemigo
         if (other.gameObject.tag == "Enemy")
         {
+            //Destruimos al enemigo
+            Destroy(other.gameObject);
+            //Destruimos al jugador
+            Destroy(gameObject);
+            
+            //Mostramos el menu de game over
+            Time.timeScale = 0f;
+            scoreTextGameOver.text = "SCORE: " + Player.SCORE;
+            gameOverMenu.SetActive(true);
+
             //Volvemos a empezar la puntuacion
             SCORE = 0;
-            //volvemos a la escena actual
+            
+            /*// Comprobar si el jugador presiona "Enter" para reiniciar el juego
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                // Cargar la escena principal (reiniciar el juego)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
+            // Comprobar si el jugador presiona "S" para salir del juego
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                // Salir del juego
+                Application.Quit();
+            }*/
+            enGameOver = true;
+            VolverAEmpezar();
+        }
+    }
+
+    private void VolverAEmpezar()
+    {
+        if(enGameOver && Input.GetKeyDown(KeyCode.R))
+        {
+            Time.timeScale = 1;
+            enGameOver = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
