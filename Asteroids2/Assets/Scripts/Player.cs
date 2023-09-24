@@ -147,38 +147,12 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             
             //Mostramos el menu de game over
-            Time.timeScale = 0f;
             scoreTextGameOver.text = "SCORE: " + Player.SCORE;
             gameOverMenu.SetActive(true);
+            Time.timeScale = 0f;
 
             //Volvemos a empezar la puntuacion
             SCORE = 0;
-            
-            /*// Comprobar si el jugador presiona "Enter" para reiniciar el juego
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                // Cargar la escena principal (reiniciar el juego)
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-
-            // Comprobar si el jugador presiona "S" para salir del juego
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                // Salir del juego
-                Application.Quit();
-            }*/
-            enGameOver = true;
-            VolverAEmpezar();
-        }
-    }
-
-    private void VolverAEmpezar()
-    {
-        if(enGameOver && Input.GetKeyDown(KeyCode.R))
-        {
-            Time.timeScale = 1;
-            enGameOver = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
