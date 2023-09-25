@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2876605595552486801}
   - component: {fileID: 2476896359530915361}
   - component: {fileID: -8489712110337670014}
-  - component: {fileID: 708643289067855759}
+  - component: {fileID: 5217086316052925472}
   m_Layer: 0
   m_Name: MiniMeteor
   m_TagString: SmallEnemy
@@ -135,7 +135,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5630493
   m_Center: {x: -0.33413887, y: -1.9999999, z: 0}
---- !u!114 &708643289067855759
+--- !u!114 &5217086316052925472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3595727816789869435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07d32ea0409e2534395a6268ef02e5e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7790069249a7881448051f6c2c3091b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3

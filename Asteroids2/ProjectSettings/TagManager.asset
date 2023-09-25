@@ -8,6 +8,7 @@ TagManager:
   - UI
   - Bullet
   - SmallEnemy
+  - Limit
   layers:
   - Default
   - TransparentFX

@@ -21,6 +21,16 @@ public class EnemySpawner : MonoBehaviour
     private float angle; //Variable para guardar el angulo aleatorio del meteorito.
     private float PI = Mathf.PI; //Los radianes no se trabajan solos :)
 
+    //Listas de Meteoritos desactivadas para usar en el pooling
+    public Queue<GameObject> meteoDesactivados;
+    public Queue<GameObject> SmallmeteoDesactivados;
+
+    private void Start()
+    {
+        meteoDesactivados = new Queue<GameObject>();
+        SmallmeteoDesactivados = new Queue<GameObject>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -39,8 +49,6 @@ public class EnemySpawner : MonoBehaviour
             //Creamos el meteorito         
             GameObject meteor = spawn(_spawnSelect);
             
-            //Destruimos el meteorito desps de un tiempo para no llenar la escena
-            Destroy(meteor, maxLifeTime);
         }
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteoBehaviour : MonoBehaviour
+public class SmallMeteoBehaviour : MonoBehaviour
 {
     public float speed = 3f;
     public Vector3 targetVector;
@@ -16,12 +16,11 @@ public class MeteoBehaviour : MonoBehaviour
     {
         camara = GameObject.Find("Main Camera");
         script = camara.GetComponent<EnemySpawner>();
-
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
         //El meteorito se desplazara con ladireccion que se le indique en el editor
         transform.Translate(targetVector * speed * Time.deltaTime);
     }
@@ -32,7 +31,7 @@ public class MeteoBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Limit")
         {
             gameObject.SetActive(false);
-            script.meteoDesactivados.Enqueue(gameObject);
+            script.SmallmeteoDesactivados.Enqueue(gameObject);
         }
     }
 }

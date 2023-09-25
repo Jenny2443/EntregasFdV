@@ -33,13 +33,17 @@ public class Player : MonoBehaviour
     public GameObject gameOverMenu;
     public Text scoreTextGameOver;
     private Boolean enGameOver = false;
-    
+
+    //Lista de balas desactivadas para usar en el pooling
+    public Queue<GameObject> balasDesactivadas;
+
     //Start is called before the first frame update
     void Start()
     {
         _rigid = GetComponent<Rigidbody>();
         yBorderLimit = (Camera.main.orthographicSize + 1);
         xBorderLimit = (Camera.main.orthographicSize + 1) * Screen.width / Screen.height;
+        balasDesactivadas = new Queue<GameObject>();
     }
 
     private void FixedUpdate()
@@ -84,7 +88,20 @@ public class Player : MonoBehaviour
         //Comprobamos si esta dando al espacio
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject bullet = Instantiate(bulletPrefab,gun.transform.position,Quaternion.identity);
+            GameObject bullet;
+
+            //Si no tenemos balas en la lista, creamos balas nuevas, si las tenemos, entonces las reutilizamos.
+            if (balasDesactivadas.Count > 0)
+            {
+                bullet = balasDesactivadas.Dequeue();
+                bullet.transform.position = gun.transform.position;
+                bullet.SetActive(true);
+            }
+            else
+            {
+                bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
+            }
+
 
             //Para que las balas vayan en la direccion de la nave
             Bullet balaScript = bullet.GetComponent<Bullet>();
