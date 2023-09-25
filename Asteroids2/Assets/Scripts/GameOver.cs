@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    // Update is called once per frame
     void Update()
     {
-        // Verificar si el jugador ha presionado la tecla "L" para reiniciar
+        //Verificar si el jugador ha presionado la tecla Return para reiniciar
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            // Cargar la escena inicial o la escena que desees reiniciar
+            //Cargar la escena inicial
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Time.timeScale = 1;
         }else if(Input.GetKeyDown(KeyCode.S))

@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-        //TODO: Hasta ahora todo bn, pero cuando descomento esto -> nave comienza arriba de la pantalla
         /*Espacio infinito*/
         var newPos = transform.position;
         //Si sale por el borde derecho
@@ -104,7 +103,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        //Si estamos en pausa y le damos a R -> Reiniciamos
+        //Si estamos en pausa y le damos a R -> Reiniciamos y volvemos a la escena inicial
         if (Input.GetKeyDown(KeyCode.R) && enPausa)
         {
             Time.timeScale = 1;
@@ -112,14 +111,16 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        //Si estamos en pausa y le damos a S -> Salimos
+        //Si estamos en pausa y le damos a S -> Salimos del juego
         if (Input.GetKeyDown(KeyCode.S) && enPausa)
         {
             Application.Quit();
         }
         
     }
-
+    
+    
+    //Función para pausar el juego
     private void PauseGame()
     {
         enPausa = true;
@@ -127,6 +128,7 @@ public class Player : MonoBehaviour
         pauseMenu.SetActive(true); //Mostrar menu de pausa
         
     }
+    //Función para reanudar el juego
     private void ResumeGame()
     {
         enPausa = false;

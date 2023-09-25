@@ -20,20 +20,19 @@ public class Bullet : MonoBehaviour
     
     //public GameObject miniAsteroidPrefab;
     
-    // Start is called before the first frame update
     void Start()
     {
         //En el primer frame, desps de 3s se autodestruye
         Destroy(gameObject,maxLife);    
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Bala tiene q star alineada con la nave
         transform.Translate(speed * targetVector * Time.deltaTime);
     }
 
+    //Función para detectar colisiones
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Enemy" ||
@@ -46,7 +45,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
             
-            //Si hemos destruido un meteorito grande entonces instsanciamos 2 meteoritos peque�os.
+            //Si hemos destruido un meteorito grande entonces instanciamos 2 meteoritos pequeños.
             if (other.gameObject.tag == "Enemy")
             {
                 angle = Random.Range(0, 180);

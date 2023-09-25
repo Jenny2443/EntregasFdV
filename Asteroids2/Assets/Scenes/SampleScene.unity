@@ -352,7 +352,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'INTRO: START'
+  m_Text: 'INTRO: Start'
 --- !u!222 &160020168
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1598,7 +1598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1097417752
 Transform:
   m_ObjectHideFlags: 0
@@ -2057,7 +2057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2034032323
 Transform:
   m_ObjectHideFlags: 0
