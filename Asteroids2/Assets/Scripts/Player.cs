@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     //Lista de balas desactivadas para usar en el pooling
     public Queue<GameObject> balasDesactivadas;
 
+    public AudioSource laser;
+
     //Start is called before the first frame update
     void Start()
     {
@@ -106,6 +108,8 @@ public class Player : MonoBehaviour
             //Para que las balas vayan en la direccion de la nave
             Bullet balaScript = bullet.GetComponent<Bullet>();
             balaScript.targetVector = transform.right;
+
+            laser.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

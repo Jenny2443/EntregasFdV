@@ -27,6 +27,8 @@ public class Bullet : MonoBehaviour
 
     private float PI = Mathf.PI; //Los radianes no se trabajan solos 
 
+    public AudioSource explosion;
+
     void Start()
     {
         ship = GameObject.Find("Ship");
@@ -95,6 +97,8 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
             scriptJugador.balasDesactivadas.Enqueue(gameObject);
         }
+
+        explosion.Play();
     }
 
     private void OnTriggerEnter(Collider other)
