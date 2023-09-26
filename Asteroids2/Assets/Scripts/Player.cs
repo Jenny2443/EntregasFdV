@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     //Pantalla final
     public GameObject gameOverMenu;
     public Text scoreTextGameOver;
-    private Boolean enGameOver = false;
 
     //Lista de balas desactivadas para usar en el pooling
     public Queue<GameObject> balasDesactivadas;
