@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
         scriptJugador = ship.GetComponent<Player>();
         camara = GameObject.Find("Main Camera");
         scriptSpawner = camara.GetComponent<EnemySpawner>();
+        explosion = camara.GetComponent<AudioSource>();
     }
 
     void Update()
