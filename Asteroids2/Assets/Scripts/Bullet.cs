@@ -9,9 +9,7 @@ using Random = UnityEngine.Random;
 public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
-
-    public float maxLife = 3f;
-
+    
     public GameObject miniMeteoPrefab;
     private float angle; //Para almacenar la direccion en la que desviaran los minimeteorritos
     private float bulletAngle;
@@ -84,7 +82,7 @@ public class Bullet : MonoBehaviour
                 Instantiate(miniMeteoPrefab, transform.position, new Quaternion(0, 0, Mathf.Sin((bulletAngle - angle) / 2), Mathf.Cos((bulletAngle - angle) / 2)));
             }
         }
-        else if (other.gameObject.tag == "SmallEnemy")//Se ejecuta si el meteorito es peque�o
+        else if (other.gameObject.tag == "SmallEnemy") //Se ejecuta si el meteorito es pequeño
         {
             //Incrementamos puntuacion
             IncreaseScore();
